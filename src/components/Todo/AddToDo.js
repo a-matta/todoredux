@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./AddTodo.module.css";
 import Button from "../UI/Button";
 
 const AddTodo = ({ addHandler }) => {
+  const [todo, setTodo] = useState({ title: "", task: "" });
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setTodo((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    console.log(todo);
+  };
+
   return (
     <form onSubmit={addHandler} className={classes.input}>
       <div>
-        <label>Title</label>
+        <label htmlFor="title" id="title" name="title" onChange={changeHandler}>
+          Title
+        </label>
         <input type="text" />
       </div>
       <div>
-        <label>Task</label>
-        <input type="text" />
+        <label htmlFor="task">Task</label>
+        <input type="text" id="task" name="task" onChange={changeHandler} />
       </div>
-      <Button>Add Task</Button>
+      <Button type="submit">Add Task</Button>
     </form>
   );
 };
-
-export default AddTodo;
