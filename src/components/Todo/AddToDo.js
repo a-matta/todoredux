@@ -14,7 +14,6 @@ const AddTodo = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(todo);
   };
   const addHandler = (e) => {
     e.preventDefault();
